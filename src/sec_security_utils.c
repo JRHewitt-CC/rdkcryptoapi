@@ -374,7 +374,8 @@ Sec_Result SecUtils_RmFile(const char *path)
 	if (len > 0) {
 		zeros = calloc(len, 1);
 		if (zeros != NULL) {
-			SecUtils_WriteFile(path, zeros, len);
+			if (SecUtils_WriteFile(path, zeros, len) != SEC_RESULT_SUCCESS)
+				SEC_LOG_ERROR("Could not write zeros");
 			free(zeros);
 		} else {
 	        SEC_LOG_ERROR("calloc failed");
