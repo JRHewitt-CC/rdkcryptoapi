@@ -5680,6 +5680,7 @@ Sec_Result SecProcessor_GetInfo(Sec_ProcessorHandle* secProcHandle,
 
     Sec_Memset(secProcInfo, 0x00, sizeof(Sec_ProcessorInfo));
     strncpy((char *)secProcInfo->version, SEC_API_VERSION, strlen(SEC_API_VERSION));
+    secProcInfo->version[strlen(SEC_API_VERSION)] = '\0';
 
     return SEC_RESULT_SUCCESS;
 }
