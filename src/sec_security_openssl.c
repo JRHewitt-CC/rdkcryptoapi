@@ -4930,6 +4930,8 @@ Sec_Result SecKey_ComputeBaseKeyDigest(Sec_ProcessorHandle* secProcHandle, SEC_B
                     &base_key))
     {
         SEC_LOG_ERROR("SecKey_GetInstance failed");
+        SecKey_Release(base_key);
+        base_key = NULL;
         return SEC_RESULT_FAILURE;
     }
 
@@ -4938,6 +4940,8 @@ Sec_Result SecKey_ComputeBaseKeyDigest(Sec_ProcessorHandle* secProcHandle, SEC_B
     if (SEC_RESULT_SUCCESS != _Sec_SymetricFromKeyHandle(base_key, base_key_clear, sizeof(base_key_clear), &wr))
     {
         SEC_LOG_ERROR("_Sec_SymetricFromKeyHandle failed");
+        SecKey_Release(base_key);
+        base_key = NULL;
         return SEC_RESULT_FAILURE;
     }
     SecKey_Release(base_key);
