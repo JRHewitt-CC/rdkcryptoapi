@@ -4515,6 +4515,13 @@ static Sec_Result _ConcatKDF(Sec_ProcessorHandle* secProcHandle,
     Sec_Result res = SEC_RESULT_FAILURE;
 
     digest_length = SecDigest_GetDigestLenForAlgorithm(digestAlgorithm);
+
+    if(digest_length == 0)
+    {
+        SEC_LOG_ERROR("Invalid digest length");
+        goto done;
+    }
+
     r = out_key_length / digest_length + ((out_key_length % digest_length == 0) ? 0 : 1);
 
     for (i = 1; i <= r; ++i)

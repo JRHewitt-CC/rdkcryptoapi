@@ -770,7 +770,7 @@ Sec_Asn1KC *SecAsn1KC_Decode(SEC_BYTE *buf, SEC_SIZE buf_len)
     }
     else if (buf_len > UINT32_MAX)
     {
-        EC_LOG_ERROR("der_encode_to_buffer failed");
+        SEC_LOG_ERROR("der_encode_to_buffer failed");
         return NULL;
     }
     
