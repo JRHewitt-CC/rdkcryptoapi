@@ -761,6 +761,20 @@ Sec_Asn1KC *SecAsn1KC_Decode(SEC_BYTE *buf, SEC_SIZE buf_len)
     const unsigned char *c_buf = buf;
     Sec_Asn1KC *ret = NULL;
 
+    if (UINT32_MAX > LONG_MAX)
+    {
+        if (buf_len > LONG_MAX)
+        {
+             SEC_LOG_ERROR("buf length rollover");
+             return NULL;
+        }
+    }
+    else if (buf_len > UINT32_MAX)
+    {
+        EC_LOG_ERROR("der_encode_to_buffer failed");
+        return NULL;
+    }
+    
     ret = d2i_Sec_Asn1KC(NULL, &c_buf, (long)buf_len);
     return ret;
 }
