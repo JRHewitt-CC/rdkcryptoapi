@@ -737,6 +737,11 @@ Sec_Result SecAsn1KC_Encode(Sec_Asn1KC *kc, SEC_BYTE *buf, SEC_SIZE buf_len, SEC
     {
         *written = der_len;
     }
+    else if (der_len < 0)
+    {
+        SEC_LOG_ERROR("der_encode_to_buffer failed");
+        return SEC_RESULT_FAILURE;
+    }
     else if (der_len > buf_len)
     {
         SEC_LOG_ERROR("der_encode_to_buffer invalide buffer length, der_len = %d, buf_len = %d", der_len, buf_len);
@@ -745,12 +750,6 @@ Sec_Result SecAsn1KC_Encode(Sec_Asn1KC *kc, SEC_BYTE *buf, SEC_SIZE buf_len, SEC
     else
     {
       *written = i2d_Sec_Asn1KC(kc, &buf);
-    }
-
-    if (*written < 0)
-    {
-        SEC_LOG_ERROR("der_encode_to_buffer failed");
-        return SEC_RESULT_FAILURE;
     }
 
     return SEC_RESULT_SUCCESS;
