@@ -161,8 +161,8 @@ static Asn1KCAttribute_t *SecAsn1KC_AllocAttr(att_choice c)
                 Asn1KCAttribute_t_free(ptr);
                 return NULL;
             }
-            break;
             ptr->value->type = ASN1KCATTRIBUTE_T_CHOICE_BITSTRING;
+            break;
         case asn1_octet_string:
             ptr->value->c.octetstring = ASN1_OCTET_STRING_new();
             if(ptr->value->c.octetstring == NULL)
