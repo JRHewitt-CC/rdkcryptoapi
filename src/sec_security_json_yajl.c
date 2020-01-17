@@ -1152,7 +1152,6 @@ Sec_Result SecJson_GenClose(Sec_JsonGenCtx *ctx, char *result, SEC_SIZE max_len)
         goto cleanup;
     }
 
-    result = malloc(sizeof(yajl_buffer_len));
     strncpy(result, (const char *) yajl_buffer, yajl_buffer_len);
     result[yajl_buffer_len] = '\0';
 
