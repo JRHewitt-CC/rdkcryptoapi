@@ -111,6 +111,7 @@ Sec_Result SecUtils_ReadFile(const char *path, void *data, SEC_SIZE data_len,
     FILE *f = NULL;
     Sec_Result sec_res = SEC_RESULT_SUCCESS;
     SEC_BYTE last_byte;
+    SEC_SIZE read = 0;
 
     *data_read = 0;
 
@@ -134,7 +135,7 @@ Sec_Result SecUtils_ReadFile(const char *path, void *data, SEC_SIZE data_len,
         goto cleanup;
     }
 
-    fread(&last_byte, 1, 1, f);
+    read= fread(&last_byte, 1, 1, f);
 
     if (0 == feof(f))
     {
